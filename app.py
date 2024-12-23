@@ -5,7 +5,9 @@ import whisper  # type: ignore
 app = Flask(__name__)
 
 # Load the Whisper model
-model = whisper.load_model("base")
+'''model = whisper.load_model("base")'''
+model = whisper.load_model("tiny")
+
 
 '''@app.route('/')
 def home():
@@ -91,5 +93,9 @@ def preprocess_email_transcription(transcription):
     transcription = transcription.replace(" ", "")  # Remove spaces for email formatting
     return transcription
 
+'''if __name__ == '__main__':
+    app.run(debug=True)'''
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
+
